@@ -1,0 +1,42 @@
+modules = ["python-3.11"]
+[nix]
+channel = "stable-25_05"
+packages = ["gitFull", "playwright-driver"]
+
+[agent]
+expertMode = true
+
+[userenv]
+
+[userenv.shared]
+TELEGRAM_GROUP_ID = "-1003938301220"
+OWNER_ID = "7446400377"
+CHANNEL_URL = "https://t.me/StormNumberChannel"
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Start application"
+
+[[workflows.workflow]]
+name = "Start application"
+author = "agent"
+
+[workflows.workflow.metadata]
+outputType = "webview"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python main.py"
+waitForPort = 5000
+
+[[ports]]
+localPort = 5000
+externalPort = 80

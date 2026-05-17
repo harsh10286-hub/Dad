@@ -1,0 +1,154 @@
+BuildDeployNetwork Flow
+Reading commit diff: #main
+00:15
+You reached the start of the range
+May 17, 2026, 3:18 PM
+scheduling build on Metal builder "builder-nphuxd"
+unpacking archive
+100 KB
+3ms
+using build driver nixpacks-v1.41.0
+uploading snapshot
+22.1 KB
+17ms
+ 
+╔══════════════════════════════ Nixpacks v1.41.0 ══════════════════════════════╗
+║ setup      │ python311, gcc                                                  ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ install    │ python -m venv --copies /opt/venv && . /opt/venv/bin/activate   ║
+║            │ && pip install -r requirements.txt                              ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ build      │ pip install -r requirements.txt && playwright install chromium  ║
+║            │ --with-deps                                                     ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ start      │ python main.py                                                  ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+ 
+ 
+Saved output to:
+  snapshot-target-unpack
+
+internal
+load build definition from Dockerfile
+0ms
+
+internal
+load metadata for ghcr.io/railwayapp/nixpacks:ubuntu-1745885067
+263ms
+
+internal
+load .dockerignore
+0ms
+SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ARG "IVASMS_PASSWORD") (line 11)(https://docs.docker.com/go/dockerfile/rule/secrets-used-in-arg-or-env/)
+ details: Sensitive data should not be used in the ARG or ENV commands
+SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ARG "TELEGRAM_BOT_TOKEN") (line 11)(https://docs.docker.com/go/dockerfile/rule/secrets-used-in-arg-or-env/)
+ details: Sensitive data should not be used in the ARG or ENV commands
+SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "IVASMS_PASSWORD") (line 12)(https://docs.docker.com/go/dockerfile/rule/secrets-used-in-arg-or-env/)
+ details: Sensitive data should not be used in the ARG or ENV commands
+SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "TELEGRAM_BOT_TOKEN") (line 12)(https://docs.docker.com/go/dockerfile/rule/secrets-used-in-arg-or-env/)
+ details: Sensitive data should not be used in the ARG or ENV commands
+UndefinedVar: Usage of undefined variable '$NIXPACKS_PATH' (line 18)(https://docs.docker.com/go/dockerfile/rule/undefined-var/)
+ details: Variables should be defined before their use
+
+stage-0
+FROM ghcr.io/railwayapp/nixpacks:ubuntu-1745885067@sha256:d45c89d80e13d7ad0fd555b5130f22a866d9dd10e861f589932303ef2314c7de
+15ms
+
+internal
+load build context
+0ms
+
+stage-0
+RUN nix-env -if .nixpacks/nixpkgs-bc8f8d1be58e8c8383e683a06e1e1e57893fff87.nix && nix-collect-garbage -d cached
+0ms
+
+stage-0
+COPY .nixpacks/nixpkgs-bc8f8d1be58e8c8383e683a06e1e1e57893fff87.nix .nixpacks/nixpkgs-bc8f8d1be58e8c8383e683a06e1e1e57893fff87.nix cached
+0ms
+
+stage-0
+WORKDIR /app/ cached
+0ms
+
+stage-0
+COPY . /app/.
+275ms
+
+stage-0
+RUN python -m venv --copies /opt/venv && . /opt/venv/bin/activate && pip install -r requirements.txt
+9s
+Successfully installed Jinja2-3.1.6 MarkupSafe-3.0.3 Werkzeug-3.1.8 anyio-4.13.0 beautifulsoup4-4.12.2 blinker-1.9.0 certifi-2026.4.22 charset-normalizer-3.4.7 click-8.4.0 cloudscraper-1.2.71 flask-2.3.3 greenlet-3.0.1 gunicorn-21.2.0 h11-0.16.0 httpcore-1.0.9 httpx-0.25.2 idna-3.15 itsdangerous-2.2.0 packaging-26.2 playwright-1.40.0 playwright-stealth-1.0.6 pyee-11.0.1 pyparsing-3.3.2 python-dotenv-1.0.0 python-telegram-bot-20.7 requests-2.31.0 requests-toolbelt-1.0.0 sniffio-1.3.1 soupsieve-2.8.3 typing-extensions-4.15.0 urllib3-2.7.0
+
+stage-0
+COPY . /app/.
+659ms
+
+stage-0
+RUN  pip install -r requirements.txt && playwright install chromium --with-deps
+6s
+Requirement already satisfied: flask==2.3.3 in /opt/venv/lib/python3.11/site-packages (from -r requirements.txt (line 1)) (2.3.3)
+Requirement already satisfied: python-telegram-bot==20.7 in /opt/venv/lib/python3.11/site-packages (from -r requirements.txt (line 2)) (20.7)
+Requirement already satisfied: requests==2.31.0 in /opt/venv/lib/python3.11/site-packages (from -r requirements.txt (line 3)) (2.31.0)
+Requirement already satisfied: beautifulsoup4==4.12.2 in /opt/venv/lib/python3.11/site-packages (from -r requirements.txt (line 4)) (4.12.2)
+Requirement already satisfied: python-dotenv==1.0.0 in /opt/venv/lib/python3.11/site-packages (from -r requirements.txt (line 5)) (1.0.0)
+Requirement already satisfied: httpx==0.25.2 in /opt/venv/lib/python3.11/site-packages (from -r requirements.txt (line 6)) (0.25.2)
+Requirement already satisfied: cloudscraper==1.2.71 in /opt/venv/lib/python3.11/site-packages (from -r requirements.txt (line 7)) (1.2.71)
+Requirement already satisfied: gunicorn==21.2.0 in /opt/venv/lib/python3.11/site-packages (from -r requirements.txt (line 8)) (21.2.0)
+Requirement already satisfied: playwright==1.40.0 in /opt/venv/lib/python3.11/site-packages (from -r requirements.txt (line 9)) (1.40.0)
+Requirement already satisfied: playwright-stealth==1.0.6 in /opt/venv/lib/python3.11/site-packages (from -r requirements.txt (line 10)) (1.0.6)
+Requirement already satisfied: Werkzeug>=2.3.7 in /opt/venv/lib/python3.11/site-packages (from flask==2.3.3->-r requirements.txt (line 1)) (3.1.8)
+Requirement already satisfied: Jinja2>=3.1.2 in /opt/venv/lib/python3.11/site-packages (from flask==2.3.3->-r requirements.txt (line 1)) (3.1.6)
+Requirement already satisfied: itsdangerous>=2.1.2 in /opt/venv/lib/python3.11/site-packages (from flask==2.3.3->-r requirements.txt (line 1)) (2.2.0)
+Requirement already satisfied: click>=8.1.3 in /opt/venv/lib/python3.11/site-packages (from flask==2.3.3->-r requirements.txt (line 1)) (8.4.0)
+Requirement already satisfied: blinker>=1.6.2 in /opt/venv/lib/python3.11/site-packages (from flask==2.3.3->-r requirements.txt (line 1)) (1.9.0)
+Requirement already satisfied: charset-normalizer<4,>=2 in /opt/venv/lib/python3.11/site-packages (from requests==2.31.0->-r requirements.txt (line 3)) (3.4.7)
+Requirement already satisfied: idna<4,>=2.5 in /opt/venv/lib/python3.11/site-packages (from requests==2.31.0->-r requirements.txt (line 3)) (3.15)
+Requirement already satisfied: urllib3<3,>=1.21.1 in /opt/venv/lib/python3.11/site-packages (from requests==2.31.0->-r requirements.txt (line 3)) (2.7.0)
+Requirement already satisfied: certifi>=2017.4.17 in /opt/venv/lib/python3.11/site-packages (from requests==2.31.0->-r requirements.txt (line 3)) (2026.4.22)
+Requirement already satisfied: soupsieve>1.2 in /opt/venv/lib/python3.11/site-packages (from beautifulsoup4==4.12.2->-r requirements.txt (line 4)) (2.8.3)
+Requirement already satisfied: anyio in /opt/venv/lib/python3.11/site-packages (from httpx==0.25.2->-r requirements.txt (line 6)) (4.13.0)
+Requirement already satisfied: httpcore==1.* in /opt/venv/lib/python3.11/site-packages (from httpx==0.25.2->-r requirements.txt (line 6)) (1.0.9)
+Requirement already satisfied: sniffio in /opt/venv/lib/python3.11/site-packages (from httpx==0.25.2->-r requirements.txt (line 6)) (1.3.1)
+Requirement already satisfied: pyparsing>=2.4.7 in /opt/venv/lib/python3.11/site-packages (from cloudscraper==1.2.71->-r requirements.txt (line 7)) (3.3.2)
+Requirement already satisfied: requests-toolbelt>=0.9.1 in /opt/venv/lib/python3.11/site-packages (from cloudscraper==1.2.71->-r requirements.txt (line 7)) (1.0.0)
+Requirement already satisfied: packaging in /opt/venv/lib/python3.11/site-packages (from gunicorn==21.2.0->-r requirements.txt (line 8)) (26.2)
+Requirement already satisfied: greenlet==3.0.1 in /opt/venv/lib/python3.11/site-packages (from playwright==1.40.0->-r requirements.txt (line 9)) (3.0.1)
+Requirement already satisfied: pyee==11.0.1 in /opt/venv/lib/python3.11/site-packages (from playwright==1.40.0->-r requirements.txt (line 9)) (11.0.1)
+Requirement already satisfied: h11>=0.16 in /opt/venv/lib/python3.11/site-packages (from httpcore==1.*->httpx==0.25.2->-r requirements.txt (line 6)) (0.16.0)
+Requirement already satisfied: typing-extensions in /opt/venv/lib/python3.11/site-packages (from pyee==11.0.1->playwright==1.40.0->-r requirements.txt (line 9)) (4.15.0)
+Requirement already satisfied: MarkupSafe>=2.0 in /opt/venv/lib/python3.11/site-packages (from Jinja2>=3.1.2->flask==2.3.3->-r requirements.txt (line 1)) (3.0.3)
+Installing dependencies...
+Get:1 http://archive.ubuntu.com/ubuntu noble InRelease [256 kB]
+Get:2 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+Get:3 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+Get:4 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [2038 kB]
+Get:5 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [34.2 kB]
+Get:6 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1504 kB]
+Get:7 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [3610 kB]
+Get:8 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+Get:9 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
+Get:10 http://archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
+Get:11 http://archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
+Get:12 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
+Get:13 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [2451 kB]
+Get:14 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [2147 kB]
+Get:15 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [54.1 kB]
+Get:16 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [3901 kB]
+Get:17 http://archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Packages [671 B]
+Get:18 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [49.0 kB]
+Get:19 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [35.9 kB]
+Fetched 38.0 MB in 2s (16.5 MB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Package libasound2 is a virtual package provided by:
+  liboss4-salsa-asound2 4.2-build2020-1ubuntu3.1
+  libasound2t64 1.2.11-1ubuntu0.2 (= 1.2.11-1ubuntu0.2)
+E: Package 'libasound2' has no installation candidate
+Failed to install browsers
+Error: Installation process exited with code: 100
+
+Build Failed: build daemon returned an error < failed to solve: process "/bin/bash -ol pipefail -c pip install -r requirements.txt && playwright install chromium --with-deps" did not complete successfully: exit code: 1 >
+You reached the end of the range
+May 17, 2026, 3:29 
